@@ -2,7 +2,8 @@ from turtle import *
 import turtle_figure
 
 def dec_to_bin(carre_size):
-    write_read = input('Voulez vous ajouter (a) ou lire (l) :')
+    # write_read = input('Voulez vous ajouter (a) ou lire (l) :')
+    write_read = "l"
     if write_read.lower() == "a":
         with open('db.txt', 'a') as db:
             str_dec = input('Nombre décimal a transformé en binaire :')
@@ -18,8 +19,11 @@ def dec_to_bin(carre_size):
             goto(-250, 250)
             texte = db.read()
             lignes = texte.split("\n")
+            lignes = [ligne for ligne in lignes if ligne != ""]
             for ligne in lignes:
                 down()
+                write(int("0b" + ligne, base=2))
+            
                 for bit in ligne:
                     if int(bit) == 0:
                         turtle_figure.carre(carre_size, "white", "black", 0)
